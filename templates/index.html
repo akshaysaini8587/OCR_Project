@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCR Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-icon" ><img src="{{ url_for('static', filename='images/icon.png') }}" alt="Icon"></div>
+      <div>
+        <h1>DocMind AI</h1>
+        <p>Image & PDF Text Extractor</p>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#uploader">Upload</a>
+        <a href="#result">Result</a>
+      </nav>
+      <button id="themeToggle" class="theme-btn" type="button">🌙 Dark</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Extract text from images and PDF files instantly.</h2>
+      <p>Drag & drop your file, preview it, delete it if needed, run OCR, and edit the extracted text before downloading.</p>
+    </section>
+
+    <section class="card" id="uploader">
+      <div class="upload-grid">
+        <div class="upload-panel">
+          <div class="upload-box" id="dropZone">
+            <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf" hidden>
+            <label for="fileInput">
+              <div class="upload-icon">⬆️</div>
+              <h3>Drag & Drop / Upload</h3>
+              <p>PNG, JPG, JPEG, PDF</p>
+              <span>Click or drop your file here</span>
+            </label>
+          </div>
+
+          <div class="preview-box">
+            <div class="section-head">
+              <h3>Preview</h3>
+              <button id="removeFileBtn" class="btn small danger" type="button">Delete</button>
+            </div>
+            <div id="previewArea" class="preview-area">
+              <p>No file selected</p>
+            </div>
+          </div>
+
+          <div class="actions-row">
+            <button id="extractBtn" class="btn primary" type="button">Extract Text</button>
+            <div id="loading" class="loading">Processing...</div>
+          </div>
+        </div>
+
+        <div class="result-panel" id="result">
+          <div class="result-head">
+            <h3>Extracted Text</h3>
+            <p>Edit the text before downloading</p>
+          </div>
+
+          <textarea id="outputText" placeholder="Extracted text will appear here..."></textarea>
+
+          <div class="actions-row bottom-actions" id="actions">
+            <button id="copyBtn" class="btn" type="button">Copy Text</button>
+            <button id="txtBtn" class="btn" type="button">Download as TXT</button>
+            <button id="pdfBtn" class="btn" type="button">Download as PDF</button>
+            <button id="wordBtn" class="btn" type="button">Download as Word</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
