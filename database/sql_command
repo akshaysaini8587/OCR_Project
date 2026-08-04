@@ -1,1 +1,15 @@
+CREATE DATABASE ocr_db;
+USE ocr_db;
 
+CREATE TABLE documents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    extracted_text TEXT,
+    upload_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE USER 'ocr_user'@'localhost' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON ocr_db.* TO 'ocr_user'@'localhost';
+FLUSH PRIVILEGES;
+
+USE ocr_db;
+SELECT * FROM documents;
